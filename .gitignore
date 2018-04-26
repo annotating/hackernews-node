@@ -2,5 +2,5 @@
 node_modules/
 
 # Configuration
-.yml
+*.yml
 .env
