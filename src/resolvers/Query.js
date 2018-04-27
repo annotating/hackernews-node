@@ -10,7 +10,6 @@ async function feed(parent, args, context, info) {
         { orderBy: args.orderBy, skip: args.skip, first: args.first},
         `{ id }`,
     );
-    console.log('queriedLinks', queriedLinks);
     const countSelectionSet = `
     {
       aggregate {
