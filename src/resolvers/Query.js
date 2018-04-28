@@ -5,11 +5,12 @@ async function feed(parent, args, context, info) {
             { description_contains: args.filter },
         ],
     } : {};
-    const queriedLinks = await context.db.query.links(
-        { where, skip: args.skip, first: args.first, orderBy: args.orderBy },
+   
+    let queriedLinks = await context.db.query.links(
+        { where, orderBy: args.orderBy, skip: args.skip, first: args.first },
         `{ id }`,
     );
-
+     
     const countSelectionSet = `
     {
       aggregate {
@@ -21,6 +22,7 @@ async function feed(parent, args, context, info) {
     return {
         count: linksConnection.aggregate.count,
         linkIds: queriedLinks.map(link => link.id),
+        orderBy: args.orderBy
     };
 }
 
