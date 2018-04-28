@@ -33,7 +33,7 @@ const server = new GraphQLServer({
           typeDefs: 'src/generated/prisma.graphql',
           endpoint: 'https://us1.prisma.sh/public-orchidweed-205/hackernews-node/dev',
           secret: PRISMA_SECRET,
-          debug: true,
+          debug: false,
         }),
       }),
 });

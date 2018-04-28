@@ -1,15 +1,15 @@
 async function feed(parent, args, context, info) {
-    // const where = args.filter ? {
-    //     OR: [
-    //         { url_contains: args.filter },
-    //         { description_contains: args.filter },
-    //     ],
-    // } : {};
-    // including where breaks query results
+    const where = args.filter ? {
+        OR: [
+            { url_contains: args.filter },
+            { description_contains: args.filter },
+        ],
+    } : {};
     const queriedLinks = await context.db.query.links(
-        { orderBy: args.orderBy, skip: args.skip, first: args.first},
+        { where, skip: args.skip, first: args.first, orderBy: args.orderBy },
         `{ id }`,
     );
+
     const countSelectionSet = `
     {
       aggregate {
